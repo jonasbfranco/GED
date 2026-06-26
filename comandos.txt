@@ -21,5 +21,10 @@ node --watch index.js
 executar o comando: npm run dev (vai ficar em modo escuta ativa também)
 
 
+** comandos GIT
+git add .
+git commit -m "Arquivos Rota"
+git push -u origin main
+
 
 
