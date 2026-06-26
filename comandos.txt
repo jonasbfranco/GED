@@ -1,0 +1,24 @@
+
+** Video
+https://www.youtube.com/watch?v=bsek3N6ZbLU&list=PLIufqALd-GkdtHv5AXT03IwBH5F3EYuyk&index=2
+
+
+
+** comandos iniciais
+npm init -y
+npm install express
+
+** para executar o node em modo de escuta ativa
+node --watch index.js
+
+
+** alterar no arquivo package.json
+"scripts": {
+    "dev": "node --watch index.js"
+  },
+
+executar o comando: npm run dev (vai ficar em modo escuta ativa também)
+
+
+
+
