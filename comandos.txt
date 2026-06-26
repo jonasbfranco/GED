@@ -2,7 +2,8 @@
 ** Video
 https://www.youtube.com/watch?v=bsek3N6ZbLU&list=PLIufqALd-GkdtHv5AXT03IwBH5F3EYuyk&index=2
 
-
+node --version
+v24.17.0
 
 ** comandos iniciais
 npm init -y
