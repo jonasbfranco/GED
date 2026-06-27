@@ -1,0 +1,11 @@
+
+
+POST http://localhost:3333/sign-up
+content-type: application/json
+
+{
+    "email": "jonasfranco@grupocpa.com.br",
+    "password": "123456"
+}
+
+###
