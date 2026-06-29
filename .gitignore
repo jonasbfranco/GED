@@ -1,2 +1,5 @@
 node_modules
 ._*
+/generated/prisma
+src/lib/prisma/generated/prisma
+/src/lib/prisma/generated/prisma

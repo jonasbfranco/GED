@@ -28,7 +28,7 @@ git push -u origin main
 
 
 
-npm install typescript ts-node-dev @types/node @types/express --save-dev  
+npm install typescript ts-node-dev @types/node @types/express --save-dev
 
 npx tsc --init
 
@@ -37,5 +37,33 @@ npx tsc --init
   },
 
 npm install zod
+
+
+npm install prisma @types/pg --save-dev
+npm install @prisma/client @prisma/adapter-pg pg dotenv
+
+npx prisma init --datasource-provider postgresql --output ../generated/prisma
+
+docker compose up -d
+
+npx prisma generate
+
+** Comandos para criar os bancos
+npx prisma migrate dev
+npx prisma generate
+
+ver banco de dados
+npx prisma studio
+
+** Excluir container e remover o volume docker
+docker compose down -v
+
+
+** instalar bcrypt para senha
+npm install bcrypt
+npm install @types/bcrypt
+
+** deletar arquicos macOS
+find . -name "._*" -delete
 
 
