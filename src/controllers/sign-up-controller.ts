@@ -1,6 +1,7 @@
 import type { Request, Response } from "express"
 import { z, ZodError } from "zod"
 import { signUpUseCase } from "../use-cases/sign-up-usecases.js"
+import { UserAlreadyExistError } from "../errors/user-already-exist-error.js"
 
 // import { prisma } from "../lib/prisma/prisma.js"
 
@@ -54,13 +55,11 @@ export async function signUpController(
         return res.status(201).send()
 
     } catch (error) {
-        if(error instanceof ZodError) {
-            return res.status(400).send({
-                message: "Validation error",
-                issues: error.format()
-            })
+
+        if(error instanceof UserAlreadyExistError) {
+            return res.status(409).send({ message: error.message })
         }
 
-        return res.status(500).send({ message: "Internal server error" })
+
     }
 }
