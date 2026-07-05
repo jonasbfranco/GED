@@ -1,4 +1,4 @@
-import { prisma } from "../lib/prisma/prisma.js";
+import { prisma } from "../../lib/prisma/prisma.js"
 import { hashSync } from "bcrypt";
 import "dotenv/config";
 import { UserAlreadyExistError } from "../errors/user-already-exist-error.js";

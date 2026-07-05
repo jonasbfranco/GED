@@ -67,3 +67,5 @@ npm install @types/bcrypt
 find . -name "._*" -delete
 
 
+npm install jsonwebtoken
+npm install @types/jsonwebtoken --save-dev

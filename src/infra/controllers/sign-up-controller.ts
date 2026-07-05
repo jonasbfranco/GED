@@ -1,7 +1,7 @@
 import type { Request, Response } from "express"
 import { z, ZodError } from "zod"
-import { signUpUseCase } from "../use-cases/sign-up-usecases.js"
-import { UserAlreadyExistError } from "../errors/user-already-exist-error.js"
+import { signUpUseCase } from "../../app/use-cases/sign-up-usecases.js"
+import { UserAlreadyExistError } from "../../app/errors/user-already-exist-error.js"
 
 // import { prisma } from "../lib/prisma/prisma.js"
 

@@ -1,11 +1,18 @@
 
-
+### sign-up - Cadastro
 POST http://localhost:3333/sign-up
 content-type: application/json
 
 {
-    "email": "teste1@grupocpa.com.br",
+    "email": "joasfranco@grupocpa.com.br",
     "password": "123456"
 }
 
-###
+### sign-in - login
+POST http://localhost:3333/sign-in
+content-type: application/json
+
+{
+    "email": "joasfranco@grupocpa.com.br",
+    "password": "123456"
+}

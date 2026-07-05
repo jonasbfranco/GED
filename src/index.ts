@@ -1,13 +1,18 @@
-import express from "express"
-import { mainRoute } from "./routes/main-route.js"
-import { errorHandler } from "./middlewares/error-handler.js"
+import express from "express";
+import { mainRoute } from "./infra/routes/main-route.js";
+import { errorHandler } from "./infra/middlewares/error-handler.js";
+import "dotenv/config";
 
-const app = express()
+const app = express();
 
-app.use(express.json())
+app.use(express.json());
 
-app.use("/", mainRoute)
+app.use("/", mainRoute);
 
-app.use(errorHandler)
+app.use(errorHandler);
 
-app.listen(3333, () => console.log("server running."))
+const PORT = process.env.PORT || 3333;
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}.`);
+});
