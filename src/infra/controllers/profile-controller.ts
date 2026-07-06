@@ -13,7 +13,10 @@ export async function profileController(
     res: Response
 ){
     try {
-        const { userid } = schemaProfileRequestBody.parse(req.userId)
+
+         const userid = z.string().uuid().parse(req.userId);
+
+        //const { userid } = schemaProfileRequestBody.parse(req.userId)
 
         const { user } = await profileUseCase({ userid })
 
@@ -24,6 +27,10 @@ export async function profileController(
         if(error instanceof UserAlreadyExistError) {
             return res.status(404).send({ message: error.message })
         }
+
+        return res.status(500).json({
+            message: "Internal Server Error"
+        })
 
 
     }

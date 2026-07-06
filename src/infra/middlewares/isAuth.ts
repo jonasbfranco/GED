@@ -13,27 +13,36 @@ export function isAuth(
 ){
 
   try {
-    const authHeader = req.headers.authorization
+    const authHeader = req.headers.authorization;
 
     if (!authHeader) {
-      return res.status(401).send({ message: "Unauthorized..." })
+        return res.status(401).json({
+            message: "Unauthorized."
+        });
     }
 
-    console.log(authHeader)
+    // const [_, token] = authHeader.split(' ')
+    const [type, token] = authHeader.split(" ");
 
-    const [_, token] = authHeader.split(" ")
-    const JWT_SECRET = String(process.env.JWT_SECRET)
-    console.log(JWT_SECRET)
-    const { sub } = jwt.verify(String(token), JWT_SECRET) as TokenPayLoad
-    console.log("ola sub")
+    if (type !== "Bearer" || !token) {
+        return res.status(401).json({
+            message: "Formato do token inválido."
+        });
+    }
 
-    req.userId = sub
-    console.log(req.userId)
-    return next()
+    // const JWT_SECRET = String(process.env.JWT_SECRET)
+    // const { sub } = jwt.verify(String(token), JWT_SECRET) as TokenPayLoad
+    const decoded = jwt.verify(token, String(process.env.JWT_SECRET)) as TokenPayLoad;
+
+    // req.userId = sub
+    req.userId = decoded.sub;
+
+    return next();
+
 
   } catch (error) {
-    console.error(error);
-    return res.status(401).send({ message: "Unauthorized...." })
+    // console.error(error);
+    return res.status(401).send({ message: "Unauthorized." })
   }
 
 }
