@@ -18,7 +18,7 @@ Content-type: application/json
 }
 
 ### Profile
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlNjE0ZWYyOC0yZjMyLTQ5NjItOTNjZi0wNGE4MzAwMWIzNDEiLCJpYXQiOjE3ODMzNDA1NTYsImV4cCI6MTc4MzQyNjk1Nn0.he-DXHnZ8N1N4e99iuieInPb3pV6nIuDJgLq_of5HUc
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlNjE0ZWYyOC0yZjMyLTQ5NjItOTNjZi0wNGE4MzAwMWIzNDEiLCJpYXQiOjE3ODMzNDMxNTEsImV4cCI6MTc4MzQyOTU1MX0.rgHG29EieSR0Mev9t8yc6SWihOFrNZ1x_L7dsPsZVk0
 GET http://localhost:3333/profile
 Content-type: application/json
 Authorization: Bearer {{token}}

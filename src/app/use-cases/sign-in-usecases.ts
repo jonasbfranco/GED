@@ -47,7 +47,7 @@ export async function signInUseCase({
     },
     JWT_SECRET,
     {
-      expiresIn: "1d"
+      expiresIn: "1d",
     }
   )
 
