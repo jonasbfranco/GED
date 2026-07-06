@@ -2,6 +2,7 @@ import type { Request, Response } from "express"
 import { z } from "zod"
 import { signInUseCase } from "../../app/use-cases/sign-in-usecases.js"
 import { UnauthorizedError } from "../../app/errors/unauthorized-error.js"
+import { InvalidCredentialsError } from "../../app/errors/invalid-cedentials-error.js"
 
 
 const schemaSignInRequestBody = z.object({
@@ -22,10 +23,17 @@ export async function signInController(
 
     } catch (error) {
 
+        if(error instanceof InvalidCredentialsError) {
+            return res.status(401).send({ message: error.message })
+        }
+
         if(error instanceof UnauthorizedError) {
             return res.status(401).send({ message: error.message })
         }
 
+        return res.status(500).json({
+            message: "Internal Server Error"
+        });
 
     }
 }

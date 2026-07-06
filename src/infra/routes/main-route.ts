@@ -2,6 +2,8 @@ import { Router, type Request, type Response } from "express";
 
 import { signUpController } from "../controllers/sign-up-controller.js";
 import { signInController } from "../controllers/sign-in-controller.js";
+import { isAuth } from '../middlewares/isAuth.js';
+import { profileController } from "../controllers/profile-controller.js";
 
 export const mainRoute = Router();
 
@@ -15,3 +17,4 @@ mainRoute.get("/ping", (req: Request, res: Response) => {
 
 mainRoute.post("/sign-up", signUpController);
 mainRoute.post("/sign-in", signInController);
+mainRoute.get("/profile", isAuth, profileController);

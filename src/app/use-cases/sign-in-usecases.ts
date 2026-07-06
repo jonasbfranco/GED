@@ -2,8 +2,8 @@ import { prisma } from "../../lib/prisma/prisma.js"
 import { compare } from "bcrypt";
 import jwt from "jsonwebtoken";
 import "dotenv/config";
-import { UserAlreadyExistError } from "../errors/user-already-exist-error.js";
 import { UnauthorizedError } from "../errors/unauthorized-error.js";
+import { InvalidCredentialsError } from "../errors/invalid-cedentials-error.js";
 
 interface ISignInUseCaseRequest {
   email: string;
@@ -27,14 +27,16 @@ export async function signInUseCase({
     },
   });
 
+  // console.log(`Passou aqui: ${JSON.stringify(userExist)}`);
+
   if (!userExist) {
-    throw new UserAlreadyExistError();
+    throw new InvalidCredentialsError();
   }
 
   const matchPassword = await compare(password, userExist.password);
 
   if (!matchPassword) {
-    throw new UnauthorizedError();
+    throw new InvalidCredentialsError();
   }
 
 
@@ -45,7 +47,7 @@ export async function signInUseCase({
     },
     JWT_SECRET,
     {
-      expiresIn: 10
+      expiresIn: "1d"
     }
   )
 

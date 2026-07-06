@@ -1,18 +1,24 @@
 
 ### sign-up - Cadastro
 POST http://localhost:3333/sign-up
-content-type: application/json
+Content-type: application/json
 
 {
-    "email": "joasfranco@grupocpa.com.br",
+    "email": "jonasfranco@grupocpa.com.br",
     "password": "123456"
 }
 
 ### sign-in - login
 POST http://localhost:3333/sign-in
-content-type: application/json
+Content-type: application/json
 
 {
-    "email": "joasfranco@grupocpa.com.br",
+    "email": "jonasfranco@grupocpa.com.br",
     "password": "123456"
 }
+
+### Profile
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkYmM5NjVmMS1mMDMxLTQwOTUtYWVlMy0yYTQxNjUzOWVhZDYiLCJpYXQiOjE3ODMzMDUwMTgsImV4cCI6MTc4MzM5MTQxOH0.z-QcUjc7oZkcyMuIKJ33X3OX8KuFdNPbuAb3apKlYlw
+GET http://localhost:3333/profile
+Content-type: application/json
+Authorization: {{token}}
