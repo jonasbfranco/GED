@@ -1,18 +1,29 @@
-import express from "express";
+import fastify from "fastify";
+import cors from "@fastify/cors";
+
 import { mainRoute } from "./infra/routes/main-route.js";
-import { errorHandler } from "./infra/middlewares/error-handler.js";
+import * as ErrorHandler from "./infra/middlewares/error-handler.js";
 import "dotenv/config";
 
-const app = express();
+const app = fastify();
 
-app.use(express.json());
+app.register(cors, { origin: "*" });
 
-app.use("/", mainRoute);
+// app.use("/", mainRoute);
 
-app.use(errorHandler);
+ErrorHandler.configure(app);
 
-const PORT = process.env.PORT || 3333;
+const PORT = Number(process.env.PORT) || 3333;
 
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}.`);
+app.listen({ port: PORT, host: "0.0.0.0" }, (err, address) => {
+  if (err) {
+    console.error(err);
+    process.exit(1);
+  }
+
+  console.log(`Server running at ${address}`);
 });
+
+/* app.listen({ port: PORT, host: "0.0.0.0" }, () => {
+  console.log(`Server running on port ${PORT}.`);
+}); */

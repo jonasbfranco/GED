@@ -69,3 +69,16 @@ find . -name "._*" -delete
 
 npm install jsonwebtoken
 npm install @types/jsonwebtoken --save-dev
+
+
+**** TRANSFORMAR EXPRESS EM FASTFY ****
+apagar node_modules
+rm -rf node_modules package-lock.json
+
+**** remover do package.json
+"@types/express": "^5.0.6",
+"express": "^5.2.1",
+
+**** instalar pacotes
+npm install
+npm install fastify @fastify/cors

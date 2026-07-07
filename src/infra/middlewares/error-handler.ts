@@ -1,19 +1,16 @@
-import type { Request, Response } from "express";
+import type { FastifyRequest, FastifyReply, FastifyInstance } from "fastify";
 import { ZodError } from "zod";
 
-export function errorHandler(
-  error: Error,
-  req: Request,
-  res: Response
-){
+export const configure = (app: FastifyInstance) => {
+  app.setErrorHandler((error: Error, request: FastifyRequest, reply: FastifyReply) => {
 
-  if(error instanceof ZodError) {
-      return res.status(400).send({
+    if (error instanceof ZodError){
+      return reply.status(400).send({
           message: "Validation error",
           issues: error.format()
-      })
-  }
+      });
+    }
 
-  return res.status(500).send({ message: "Internal server error" })
-
+      return reply.status(500).send({ message: "Internal server error" })
+  })
 }
