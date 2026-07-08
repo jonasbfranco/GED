@@ -1,5 +1,6 @@
-declare namespace Express {
-  export interface Request {
-    userId?: string;
+import "fastify";
+declare module "fastify" {
+  interface FastifyRequest {
+    userId: string;
   }
 }

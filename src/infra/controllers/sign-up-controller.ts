@@ -1,4 +1,4 @@
-import type { Request, Response } from "express"
+import type { FastifyRequest, FastifyReply } from "fastify";
 import { z, ZodError } from "zod"
 import { signUpUseCase } from "../../app/use-cases/sign-up-usecases.js"
 import { UserAlreadyExistError } from "../../app/errors/user-already-exist-error.js"
@@ -17,8 +17,8 @@ const schemaSignUpRequestBody = z.object({
 })
 
 export async function signUpController(
-    req: Request,
-    res: Response
+    req: FastifyRequest,
+    reply: FastifyReply
 ){
     try {
         const { email, password } = schemaSignUpRequestBody.parse(req.body)
@@ -52,12 +52,12 @@ export async function signUpController(
         const { user } = await signUpUseCase({ email, password })
 
         // return res.status(201).send({ user })
-        return res.status(201).send()
+        return reply.status(201).send()
 
     } catch (error) {
 
         if(error instanceof UserAlreadyExistError) {
-            return res.status(409).send({ message: error.message })
+            return reply.status(409).send({ message: error.message })
         }
 
 

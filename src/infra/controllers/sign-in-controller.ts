@@ -1,4 +1,4 @@
-import type { Request, Response } from "express"
+import type { FastifyRequest, FastifyReply } from "fastify";
 import { z } from "zod"
 import { signInUseCase } from "../../app/use-cases/sign-in-usecases.js"
 import { UnauthorizedError } from "../../app/errors/unauthorized-error.js"
@@ -11,27 +11,27 @@ const schemaSignInRequestBody = z.object({
 })
 
 export async function signInController(
-    req: Request,
-    res: Response
+    req: FastifyRequest,
+    reply: FastifyReply
 ){
     try {
         const { email, password } = schemaSignInRequestBody.parse(req.body)
 
         const data = await signInUseCase({ email, password })
 
-        return res.status(200).send(data)
+        return reply.status(200).send(data)
 
     } catch (error) {
 
         if(error instanceof InvalidCredentialsError) {
-            return res.status(401).send({ message: error.message })
+            return reply.status(401).send({ message: error.message })
         }
 
         if(error instanceof UnauthorizedError) {
-            return res.status(401).send({ message: error.message })
+            return reply.status(401).send({ message: error.message })
         }
 
-        return res.status(500).json({
+        return reply.status(500).send({
             message: "Internal Server Error"
         });
 

@@ -73,7 +73,10 @@ npm install @types/jsonwebtoken --save-dev
 
 **** TRANSFORMAR EXPRESS EM FASTFY ****
 apagar node_modules
+*** Linux
 rm -rf node_modules package-lock.json
+*** Windows
+Remove-Item -Recurse -Force node_modules; Remove-Item -Force package-lock.json
 
 **** remover do package.json
 "@types/express": "^5.0.6",
