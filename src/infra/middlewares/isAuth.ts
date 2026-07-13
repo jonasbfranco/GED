@@ -2,8 +2,7 @@ import type { FastifyRequest, FastifyReply } from "fastify";
 import jwt, { type JwtPayload } from "jsonwebtoken";
 import "dotenv/config";
 
-import { UnauthorizedError } from "../../app/errors/unauthorized-error.js";
-
+//import { UnauthorizedError } from "../../app/errors/unauthorized-error.js";
 interface TokenPayLoad extends JwtPayload {
   sub: string
 }

@@ -44,9 +44,14 @@ npm install @prisma/client @prisma/adapter-pg pg dotenv
 
 npx prisma init --datasource-provider postgresql --output ../generated/prisma
 
-docker compose up -d
 
 npx prisma generate
+
+
+*** Subir docker
+docker compose up -d
+
+
 
 ** Comandos para criar os bancos
 npx prisma migrate dev
